@@ -1,4 +1,4 @@
-from .connect_settings import conn, cur
+from connect_settings import conn, cur
 
 # Request to obtain the minimum and maximum age for names shorter than 6 characters.
 query = """

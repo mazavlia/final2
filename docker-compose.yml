@@ -1,21 +1,3 @@
-#services:
-#  postgres:
-#    container_name: postgres
-#    networks:
-#      - db
-#    image: postgres:13
-#    hostname: localhost
-#    ports:
-#      - 5435:5432
-#    environment:
-#      POSTGRES_USER: ${POSTGRES_USER}
-#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-#      POSTGRES_DB: ${POSTGRES_DB}
-#      POSTGRES_HOST: ${POSTGRES_HOST}
-#      POSTGRES_PORT: ${POSTGRES_PORT}
-#    volumes:
-#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-#      - postgres-db-volume:/var/lib/postgresql/data
 services:
   postgres:
     container_name: postgres
@@ -49,6 +31,12 @@ services:
         condition: service_healthy
     networks:
       - db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
 
 networks:
   db:

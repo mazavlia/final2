@@ -1,5 +1,6 @@
 # Итоговая аттестация по второму модулю курса "Архитектор данных"
 
 ## Для запуска выполнить следующие команды:  
-### 1. git pull  https://github.com/mazavlia/final2.git  
-### 2. docker compose up -d
+### 1. Наберите в терминале "***git clone https://github.com/mazavlia/final2.git***"
+### 2. В директории, куда склонировали проект, введите "***docker compose up -d***"
+### 3. Введите в терминале команду "***docker logs python***"
