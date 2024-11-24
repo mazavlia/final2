@@ -1,0 +1,35 @@
+services:
+  postgres:
+    container_name: postgres
+    networks:
+      - db
+    image: postgres:13
+    hostname: localhost
+    ports:
+      - 5435:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}" ]
+      interval: 5s
+      retries: 5
+    restart: always
+
+  python:
+    container_name: python
+    build: 
+      context: .
+    depends_on:
+      postgres:
+        condition: service_healthy 
+    networks:
+      - db
+networks:
+  db:
+    driver: bridge
+volumes:
+  postgres-db-volume:
