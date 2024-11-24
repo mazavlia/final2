@@ -5,14 +5,14 @@ from sqlalchemy import create_engine
 import sys
 import os
 # sys.path.insert(0, '/opt/airflow/dags/')
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Connections settings
 
 config = {
     'database': os.getenv("POSTGRES_DB"),
-    'user': os.getenv("POSTGRES_USER_"),
+    'user': os.getenv("POSTGRES_USER"),
     'password': os.getenv("POSTGRES_PASSWORD"),
     'host': os.getenv("POSTGRES_HOST"),
     'port': os.getenv("POSTGRES_PORT"),
@@ -22,3 +22,4 @@ engine = create_engine(f"postgresql+psycopg2://{config['user']}:{config['passwor
                        f"{config['port']}/{config['database']}")
 
 conn = psycopg2.connect(**config)
+cur = conn.cursor()
